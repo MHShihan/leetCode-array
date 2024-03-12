@@ -1,10 +1,24 @@
-const firstPalindrome = (words) => {
-  const reverseWords = words.map((word) => word.split("").reverse().join(""));
-
-  const firstWord = reverseWords.find(
-    (reverseWord) => reverseWord === words.find((word) => word === reverseWord)
-  );
-  return firstWord || "";
+const firstPalindrome1 = (words) => {
+  for (const word of words) {
+    if (word === word.split("").reverse().join("")) {
+      return word;
+    }
+  }
+  return "";
 };
-const words = ["abc", "car", "", "", "", "cool"];
+
+const firstPalindrome = (words) => {
+  for (const word of words) {
+    let left = 0;
+    let right = word.length - 1;
+    while (word[left] === word[right]) {
+      if (left >= right) return word;
+      left++;
+      right--;
+    }
+  }
+  return "";
+};
+
+const words = ["abc", "car", "ada", "", "", "cool"];
 console.log(firstPalindrome(words));
